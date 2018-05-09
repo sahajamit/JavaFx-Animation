@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -20,8 +22,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         label.setText("amit");
-        label.setLayoutX(50);
-        label.setLayoutY(50);
+        label.setLayoutX(250);
+        label.setLayoutY(250);
+        label.setMinWidth(50);
+        label.setMinWidth(200);
 
         circle.setFill(Color.AQUAMARINE);
         circle.setRadius(50);
@@ -35,10 +39,15 @@ public class Main extends Application {
         translateTransition.setAutoReverse(true);
         translateTransition.setCycleCount(Animation.INDEFINITE);
         translateTransition.setNode(circle);
-        translateTransition.play();
+//        translateTransition.play();
+
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(3000),label);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
 
         Pane root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        root.getChildren().addAll(circle);
+        root.getChildren().addAll(circle,label);
         primaryStage.setTitle("Transition");
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
