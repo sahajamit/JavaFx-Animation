@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,11 +32,13 @@ public class Main extends Application {
         translateTransition.setDuration(Duration.seconds(3));
         translateTransition.setToX(500);
         translateTransition.setToY(500);
-        translateTransition.setNode(label);
+        translateTransition.setAutoReverse(true);
+        translateTransition.setCycleCount(Animation.INDEFINITE);
+        translateTransition.setNode(circle);
         translateTransition.play();
 
         Pane root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        root.getChildren().addAll(label);
+        root.getChildren().addAll(circle);
         primaryStage.setTitle("Transition");
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
